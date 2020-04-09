@@ -1,0 +1,68 @@
+http://localhost:3000/graphql
+
+mutation Create {
+  createExpense(
+    userName: "Beatriz"
+    type: "Alimentação"
+    description: "Almoço com chefe"
+    value: 20
+    refundable: true
+  ) {
+    id
+    userName
+    type
+    description
+    value
+    refundable
+  }
+}
+
+
+query List {
+  expenses {
+    id
+    userName
+    type
+    description
+    value
+    refundable
+  }
+}
+
+
+query Unit {
+  expense(id:1) {
+    id
+    userName
+    type
+    description
+    value
+    refundable
+  }
+}
+
+
+mutation Update {
+  updateExpense(
+    id: "2"
+    userName: "Beatriz"
+    type: "Alimentação"
+    description: "Almoço de despedida"
+    value: 20
+    refundable: false
+  ) {
+    id
+    userName
+    type
+    description
+    value
+    refundable
+  }
+}
+
+
+mutation Delete {
+  deleteExpense(id: "2") {
+    id
+  }
+}

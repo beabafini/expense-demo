@@ -12,8 +12,8 @@ const schema = buildSchema(`
     refundable: Boolean
   }
   type Query {
-    expense(id: ID!): Expense
-    expenses: [Expense]
+    findExpenseById(id: ID!): Expense
+    findAllExpenses: [Expense]
   }
   type Mutation {
     createExpense(userName: String!, type: String!, description: String!, value: Int!, refundable: Boolean!): Expense
@@ -29,10 +29,10 @@ const providers = {
 let id = 1;
 
 const resolvers = {
-  expense({ id }) {
+  findExpenseById({ id }) {
     return providers.expenses.find(item => item.id === Number(id));
   },
-  expenses() {
+  findAllExpenses() {
     return providers.expenses;
   },
   createExpense({ userName, type, description, value, refundable }) {
@@ -57,7 +57,7 @@ const resolvers = {
         expense.description = description,
         expense.value = value,
         expense.refundable = refundable;
-
+        
         return expense;
       }
     });
@@ -68,7 +68,7 @@ const resolvers = {
     if (index != -1) {
       providers.expenses.splice(index, 1);
     }
-
+    
     return id;
   }
 };
@@ -83,3 +83,4 @@ app.use(
 );
   
 app.listen(3000);
+module.exports = { app, resolvers }

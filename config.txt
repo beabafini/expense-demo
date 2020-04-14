@@ -1,6 +1,6 @@
 http://localhost:3000/graphql
 
-mutation Create {
+mutation createExpense {
   createExpense(
     userName: "Beatriz"
     type: "Alimentação"
@@ -18,8 +18,8 @@ mutation Create {
 }
 
 
-query List {
-  expenses {
+query findAllExpenses {
+  findAllExpenses {
     id
     userName
     type
@@ -30,8 +30,8 @@ query List {
 }
 
 
-query Unit {
-  expense(id:1) {
+query findExpenseById {
+  findExpenseById(id:1) {
     id
     userName
     type
@@ -42,7 +42,7 @@ query Unit {
 }
 
 
-mutation Update {
+mutation updateExpense {
   updateExpense(
     id: "2"
     userName: "Beatriz"
@@ -61,7 +61,7 @@ mutation Update {
 }
 
 
-mutation Delete {
+mutation deleteExpense {
   deleteExpense(id: "2") {
     id
   }
